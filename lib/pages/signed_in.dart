@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
 
-class SignedIn extends StatelessWidget {
-  // Step 5
-  const SignedIn({
+class SignedIn extends StatefulWidget {
+  String userName;
+
+  SignedIn({
     Key? key,
+    required this.userName,
+
+    // the same name will take the same value that we navgiate to the class username
   }) : super(key: key);
-  // Step 6
+
+  @override
+  State<SignedIn> createState() => _SignedInState();
+}
+
+class _SignedInState extends State<SignedIn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,9 +25,8 @@ class SignedIn extends StatelessWidget {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            // Step 9
-            Text("Welcome username"),
+          children: [
+            Text("Welcome ${widget.userName}"),
             Icon(
               Icons.check_circle,
               color: Colors.green,

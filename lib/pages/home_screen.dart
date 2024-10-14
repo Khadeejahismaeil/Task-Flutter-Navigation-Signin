@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+
 import 'package:go_router/go_router.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
+
   final usernameController = TextEditingController();
+
   final passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,7 +62,15 @@ class HomeScreen extends StatelessWidget {
                   MaterialStateProperty.all<Color>(Colors.deepPurpleAccent),
             ),
             onPressed: () {
-              // Step 8
+              // Step 8 --6
+
+              if (passwordController.text == "12345") {
+                GoRouter.of(context)
+                    .go('/signed_in', extra: usernameController.text);
+                //After the user is signed in, we don't want him to be able to go back to the signin form.
+              } else {
+                Text(" wrong password ");
+              }
             },
             child: const Padding(
               padding: EdgeInsets.all(8.0),
